@@ -1,0 +1,31 @@
+# rumdl: Markdown linting + formatting
+# https://rumdl.dev/rules/
+
+[global]
+# MD013 - Line length
+disable = ["MD013"]
+flavor = "gfm"
+
+# MD004 - Unordered list markers: always dash (`-`)
+[MD004]
+style = "dash"
+
+# MD029 - Ordered lists: items must increment (1. 2. 3.), not lazy (1. 1. 1.)
+[MD029]
+style = "ordered"
+
+# MD049 - Italic emphasis with underscores (`_italic_`)
+[MD049]
+style = "underscore"
+
+# MD050 - Bold emphasis with asterisks (`**bold**`)
+[MD050]
+style = "asterisk"
+
+# MD060 - Table formatting: compact spacing, aligned delimiters,
+# no max column width
+[MD060]
+enabled = true
+style = "compact"
+aligned-delimiter = true
+max-width = 0

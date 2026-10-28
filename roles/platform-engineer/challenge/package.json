@@ -1,0 +1,29 @@
+{
+  "name": "media-processing-queue",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "create-video": "tsx scripts/create-video.ts",
+    "format": "npm run lint:fix && oxfmt \"src/**/*.ts\" \"external/**/*.ts\" \"scripts/**/*.ts\"",
+    "lint": "oxlint src external scripts",
+    "lint:fix": "oxlint --fix src external scripts || oxlint --fix src external scripts",
+    "start": "tsx src/server.ts",
+    "test": "tsx --test \"src/**/*.test.ts\" \"external/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=26"
+  }
+}
