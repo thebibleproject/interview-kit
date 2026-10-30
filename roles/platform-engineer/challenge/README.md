@@ -148,11 +148,11 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
 ## Deliverables
 
-- Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`.
+1. Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`.
   - If you'd like to share a priviate repository with us, please ensure the following github users have access: Mont-E2805, lukeaskew, mjtognetti-bp
-- Tests for the parts you think matter most.
-- A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
-- A clear and detailed `NOTES.md` that covers:
+2. Tests for the parts you think matter most.
+3. A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
+4. A clear and detailed `NOTES.md` that covers:
   - a brief overview of what you changed to support the new requirements
   - the lifecycle of a submission after your change
   - a description of how your system handles a partner adding a new storage destination
