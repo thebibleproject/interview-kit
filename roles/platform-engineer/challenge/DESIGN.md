@@ -1,4 +1,4 @@
-# Media processing service
+# Media Processing Service Design Document
 
 The service takes a video file path and a list of languages. It reads the file's metadata, takes 5 screen captures, transcribes the video into each language, and uploads the original, the captures, and the transcripts to every store. Clients poll a submission for its progress.
 
@@ -26,7 +26,7 @@ The files below are listed in the order a submission moves through the service.
 | `src/server.ts`, `src/log.ts` | Startup, shutdown, and log lines. |
 | `src/tests/*.test.ts` | Behavior tests through the HTTP API. `test-harness.ts` starts the service on a fresh database against instant, reliable external services. |
 
-## A submission's lifecycle
+## A Submission's Lifecycle
 
 1. `POST /videos` validates the request. The path must be absolute and name a regular file. The languages must be a non-empty list of codes such as `en` or `pt-BR`.
 2. One transaction finds or creates the video by path, size, and mtime. It records the submission and its languages. It then inserts the submission's plan. A task the video already has is skipped, so earlier work is reused.
@@ -44,7 +44,7 @@ getMetadata ──┬── captureFrame:1..5 ─ upload:capture-<n>@{primary,cd
 
 Objects land at `<videoId>/original.<ext>`, `<videoId>/capture-<n>.jpg`, and `<videoId>/transcript-<lang>.json`.
 
-## Data model
+## Data Model
 
 | Table | Holds |
 | ----- | ----- |
@@ -110,7 +110,7 @@ One JSON line per event on stdout.
 | `task.failed` | video, task, attempts, reason, error |
 | `worker.error` | error; task, if the error occurred while recording a task's outcome |
 
-## Known limits
+## Known Limits
 
 - The transcriber limit and the startup reset assume one process. A second process would exceed the transcriber's concurrency and reset the first process's running tasks.
 - The scheduler orders all work by `next_run_at`, then by task id. A large backlog delays a new submission, and there is no notion of priority.

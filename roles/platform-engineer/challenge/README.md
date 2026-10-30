@@ -1,8 +1,23 @@
-# Media processing system: delivery to partners
+# Media Processing Service Challenge
 
 Extend an existing media processing service to support multiple partners and changing delivery destinations. Plan on about **4 hours**; prioritize the core flow and document unfinished work.
 
-## The scenario
+## Table of Contents
+
+- [The Scenario](#the-scenario)
+- [The New Requirements](#the-new-requirements)
+  - [Submission State](#submission-state)
+  - [Expected Scale](#expected-scale)
+- [Your Task](#your-task)
+  - [Must-Haves](#must-haves)
+- [What We're Looking For](#what-were-looking-for)
+- [Scope and Constraints](#scope-and-constraints)
+- [Getting Started](#getting-started)
+- [Test Video Files](#test-video-files)
+- [Deliverables](#deliverables)
+- [Further Questions to Consider](#further-questions-to-consider)
+
+## The Scenario
 
 Your organization makes videos and shares them with partners. Partners are organizations that publish the videos on their own platforms.
 
@@ -20,7 +35,7 @@ The service's code is in `src/`. [`DESIGN.md`](DESIGN.md) is the previous team's
 > [!NOTE]
 > We care about how you work with a system you didn't design, not the depth of your media processing expertise. `external/` contains local stand-ins for every media tool and third-party service. See [`external/README.md`](external/README.md).
 
-## The new requirements
+## The New Requirements
 
 Your organization wants to share its videos with more partners. Each new partner requires a different set of languages for the videos and transcripts it publishes. Most videos go to several partners. The content team submits a video once for each partner, along with that partner's required transcript languages. A partner decides where its videos are stored.
 
@@ -57,30 +72,30 @@ Your organization wants to share its videos with more partners. Each new partner
 
 6. **Source files don't stay.** The content team's shared drive is running out of space. A cleanup job now deletes a source file sometime after the first submission that uses it succeeds, because `primary` then holds a copy. Assume the file at `path` exists only until that cleanup.
 
-### Submission state
+### Submission State
 
 A submission succeeds once every asset is in `primary` and in each of its partner's required destinations. You decide what a submission's state means when its partner's destinations change after it was submitted. Write the decision down.
 
-### Expected scale
+### Expected Scale
 
 - About 50 partners, each with 1 to 5 destinations.
 - The largest partner has been sent 20,000 videos.
 - Adding a destination to the largest partner must not hold up new submissions for any partner.
 
-## Your task
+## Your Task
 
 Start by reading the existing implementation and `DESIGN.md`. Adapt the service to the requirements above.
 
-### Must-haves
+### Must-Haves
 
 1. A partner can set its destinations, and a new submission is delivered to `primary` and to each of that partner's destinations.
 2. A submission's state follows each destination's `required` flag, and its status shows every asset at every destination.
 3. When a partner adds a destination, the videos already sent to that partner are delivered there. If you stop the process partway through and start it again, delivery resumes without redoing finished work.
 4. A database written by the current service still works after your change.
 
-Work within about **4 hours**; no more than 8. If you do not finish, explain what works, what remains, and what you would tackle next in `NOTES.md`.
+Work within about **4 hours**. If you do not finish, explain what works, what remains, and what you would tackle next in `NOTES.md`.
 
-## What we're looking for
+## What We're Looking For
 
 The new requirements invalidate some of the decisions, invariants, and assumptions that went into the design of the existing system. We want to see how you interact with that existing system and adapt it to the new requirements - what you keep, what you change, and why.
 
@@ -90,14 +105,14 @@ We will focus on:
 - The reliability and maintainability of your changes, supported by focused tests.
 - How clearly you explain tradeoffs, prioritization, and a safe migration approach.
 
-## Scope and constraints
+## Scope and Constraints
 
 - Real media processing, real cloud services, authentication, a UI, and deployment are out of scope.
 - Any additional npm packages are fine. You may change the persistence layer. Prefer options that a reviewer can run with minimal setup. If running your project takes more than `npm install && npm start`, document the steps.
 - Treat `external/` as third-party services that you don't control. You may configure them, but don't change their behavior.
 - You may use AI coding tools, but you should understand the changes you've made and be able to answer questions about the system.
 
-## Getting started
+## Getting Started
 
 ```sh
 npm install          # installs dependencies
@@ -114,7 +129,7 @@ The repo contains:
 - `external/`, local stand-ins for the third-party services. See [`external/README.md`](external/README.md).
 - `fixtures/`, including `sample.mp4` for testing.
 
-## Test video files
+## Test Video Files
 
 A sample video is provided at [`fixtures/sample.mp4`](fixtures/sample.mp4). It represents about 4 seconds of video.
 
@@ -143,7 +158,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
   - what you would do with more time
   - which AI tools you used, how you used them, and what you used them for
 
-### Further questions to consider
+## Further Questions to Consider
 
 A real-world system has to hold up under many conditions. Keep these questions in mind as you work - we'll come back to them in the interview.
 

@@ -1,4 +1,4 @@
-# External services
+# External Services
 
 `external/` stands in for the media tools and third-party services the service calls.
 
