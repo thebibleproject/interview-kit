@@ -1,0 +1,29 @@
+name: Security
+run-name: Security Scan - ${{ github.event.head_commit.message || github.event.pull_request.title || github.ref_name }}
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - "**"
+  schedule:
+    - cron: "0 8 * * 1" # Monday
+  workflow_dispatch:
+
+concurrency:
+  group: bp-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Scan:
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      security-events: write
+      id-token: write
+    uses: thebibleproject/bp-security/.github/workflows/bp-security.yml@prod
+    secrets:
+      SOCKET_SECURITY_API_KEY: ${{ secrets.SOCKET_SECURITY_API_KEY }}
+      BP_SECURITY_JSM_API_KEY: ${{ secrets.BP_SECURITY_JSM_API_KEY }}
