@@ -12,18 +12,15 @@ Each role has its own folder under [`roles/`](roles/) with its take-home challen
 
 ## Interview Stages
 
-| Stage | Time | What to expect |
-| ----- | ---- | -------------- |
-| Application | - | Start by applying through our careers page. We'll get to know your experience and how it connects with the role. |
-| Phone screen | 30 min | Talk with a hiring manager about your experience, the role, and what you're looking for. This is a chance to ask questions, too. |
-| Take-home challenge | about 4 hours | Explore a role-specific challenge inspired by our work. You'll have the flexibility to complete it on your own schedule. |
-| Technical interview | 1 hour | Talk through your work with members of the hiring team. Tell us about your approach, the choices you made, and what you might explore next. |
-| In-person | about 4 hours | Get to know the team you'd join and colleagues from across the organization. It's a time for you to ask questions, too. |
-| Hiring team review | - | Your interviewers will come together to share perspectives and make a thoughtful decision. |
-| References | - | We'll contact your references to hear more about their experiences working with you. |
-| 1:1 with an executive leader | 30 min | Explore our mission and values, and ask any questions you still have. |
-| Offer extended | - | Your hiring manager will walk you through the offer and answer your questions. Take the time you need to consider it. |
-| Offer accepted | - | Welcome to BibleProject! We'll be in touch to help you get ready for your first day. |
+1. Application
+2. Phone screen (30 minutes)
+3. Take-home challenge (about 4 hours)
+4. Technical interview (1 hour)
+5. Team interviews (about 4 hours)
+6. Hiring team review & References
+7. 1:1 with an executive leader (30 minutes)
+8. Offer extended
+9. Offer accepted
 
 ## About BibleProject
 
