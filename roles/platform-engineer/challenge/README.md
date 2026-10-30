@@ -66,11 +66,9 @@ Your organization wants to share its videos with more partners. Each new partner
 
 3. **The `primary` store is universal.** Every asset of every video still goes to `primary`, and `primary` is always required. It is not a destination of any partner.
 
-4. **A video can be submitted again.** The content team may submit a video for another partner after an earlier submission succeeded. It may also resubmit a video for the same partner to add transcript languages, or by mistake. The service must not redo work it has already finished.
+4. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay. The content team's shared drive can't sustain bulk reads. A backfill must not read source files.
 
-5. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay.
-
-6. **Existing data belongs to GoodPeople.** Every submission made before your change was for the partner `GoodPeople`. Its destinations are `cdn` (tier `medium`, required) and `archive` (tier `slow`, not required). A database written by the current service must keep working after your change.
+5. **Existing data belongs to GoodPeople.** Every submission made before your change was for the partner `GoodPeople`. Its destinations are `cdn` (tier `medium`, required) and `archive` (tier `slow`, not required). A database written by the current service must keep working after your change.
 
 ### Submission State
 
