@@ -30,6 +30,8 @@ It currently supports:
 - The video file and all of its derived assets are uploaded to three object stores: `primary` (the system's own storage), `cdn`, and `archive`. `cdn` and `archive` are GoodPeople's object stores.
 - A client can fetch the status of a submission to understand its progress and ultimate outcome.
 
+Source files live on the content team's shared drive, which the service's machine mounts as its videos directory. A submission names a file by its path relative to that directory, and the service reads the file from there. Clients run on other machines and reach the service only through its HTTP API.
+
 The service's code is in `src/`. [`DESIGN.md`](DESIGN.md) is the previous team's design doc. It lists the service's three endpoints and describes the lifecycle of a submission, the data model, the decisions they made, and the limits they knew about. Read both before changing anything.
 
 > [!NOTE]
@@ -45,7 +47,7 @@ Your organization wants to share its videos with more partners. Each new partner
     POST /videos
     Content-Type: application/json
 
-    { "partner": "acme", "path": "/absolute/path/to/video.mp4", "languages": ["en", "es"] }
+    { "partner": "acme", "path": "lessons/intro.mp4", "languages": ["en", "es"] }
     ```
 
 2. **Each partner has its own destinations.** A destination is a bucket the partner owns at your storage vendor. It has a name, a tier, and a flag that says whether it is required. A partner replaces its whole list at once:
@@ -125,7 +127,7 @@ npm run format       # formats code
 
 The repo contains:
 
-- `src/`, the current service. [`DESIGN.md`](DESIGN.md) describes it. It keeps its database at `data/service.db`. Set `DB_PATH` to use another file.
+- `src/`, the current service. [`DESIGN.md`](DESIGN.md) describes it. It keeps its database at `data/service.db`. Set `DB_PATH` to use another file. It reads videos from `data/videos/`. Set `VIDEOS_DIR` to use another directory.
 - `external/`, local stand-ins for the third-party services. See [`external/README.md`](external/README.md).
 - `fixtures/`, including `sample.mp4` for testing.
 
@@ -142,7 +144,7 @@ npm run create-video -- lessons/intro.mp4      # 10 MB, ~40 seconds
 npm run create-video -- lessons/long.mp4 100   # 100 MB, ~7 minutes
 ```
 
-The path argument is relative to `data/videos/`. The size is in megabytes, defaults to 10, and is at most 100. The script won't overwrite an existing file.
+The path argument is relative to `data/videos/`, and it is the `path` you submit. The size is in megabytes, defaults to 10, and is at most 100. The script won't overwrite an existing file.
 
 Larger files take longer to transcribe and upload. Each store keeps a full copy of every original it receives under `data/stores/`, so a 100 MB file delivered to the three built-in stores uses another 300 MB of disk.
 

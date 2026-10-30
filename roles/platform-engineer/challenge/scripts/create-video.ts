@@ -3,11 +3,11 @@ import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 
 import { inspectVideo } from "../external/shared/video.ts";
 
-const VIDEOS_DIR = resolve("data/videos");
+const VIDEOS_DIR = resolve(process.env.VIDEOS_DIR ?? "data/videos");
 const DEFAULT_MEGABYTES = "10";
 const MAX_MEGABYTES = 100;
 const BYTES_PER_MEGABYTE = 1_000_000;
-const USAGE = `usage: npm run create-video -- <path under data/videos/> [megabytes, default 10, max ${MAX_MEGABYTES}]`;
+const USAGE = `usage: npm run create-video -- <path under ${VIDEOS_DIR}> [megabytes, default 10, max ${MAX_MEGABYTES}]`;
 
 function parseArgs([path, megabytes = DEFAULT_MEGABYTES]: string[]) {
   if (!path || isAbsolute(path)) return undefined;
@@ -17,7 +17,7 @@ function parseArgs([path, megabytes = DEFAULT_MEGABYTES]: string[]) {
     return undefined;
   const mb = Number(megabytes);
   if (!(mb > 0 && mb <= MAX_MEGABYTES)) return undefined;
-  return { filePath, bytes: Math.round(mb * BYTES_PER_MEGABYTE) };
+  return { path: inside, filePath, bytes: Math.round(mb * BYTES_PER_MEGABYTE) };
 }
 
 const args = parseArgs(process.argv.slice(2));
@@ -25,7 +25,7 @@ if (!args) {
   console.error(USAGE);
   process.exit(1);
 }
-const { filePath, bytes } = args;
+const { path, filePath, bytes } = args;
 
 await mkdir(dirname(filePath), { recursive: true });
 {
@@ -38,5 +38,5 @@ await mkdir(dirname(filePath), { recursive: true });
 }
 const { durationSec } = await inspectVideo("media", filePath);
 console.log(
-  `Created ${filePath} (${bytes / BYTES_PER_MEGABYTE} MB, ~${durationSec} s)`,
+  `Created ${filePath} (${bytes / BYTES_PER_MEGABYTE} MB, ~${durationSec} s). Submit it with "path": "${path}".`,
 );
