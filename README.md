@@ -4,27 +4,14 @@ Thank you for considering a role at BibleProject! We want you to know what to ex
 
 Each role has its own folder under [`roles/`](roles/) with its take-home challenge and job description. The challenges reflect the type of work you'd encounter daily in your role. They are open-ended and deliberately ambiguous in places. We are just as interested in your thinking and approach to problem-solving as we are in your technical aptitude. Questions about the process are always welcome, and if a requirement is genuinely unclear, please ask.
 
-- [Interview Stages](#interview-stages)
 - [About BibleProject](#about-bibleproject)
   - [Mission and Values](#mission-and-values)
   - [Product Principles](#product-principles)
 - [Careers at BibleProject](#careers-at-bibleproject)
 
-## Interview Stages
-
-1. Application
-2. Phone screen (30 minutes)
-3. Take-home challenge (about 4 hours)
-4. Technical interview (1 hour)
-5. Team interviews (about 4 hours)
-6. Hiring team review & References
-7. 1:1 with an executive leader (30 minutes)
-8. Offer extended
-9. Offer accepted
-
 ## About BibleProject
 
-[BibleProject](https://bibleproject.com) is a crowd-funded nonprofit that creates videos, podcasts, classes, and other tools to help people experience the unified story of the Bible that leads to Jesus. Every resource is available for free and most are localized into dozens of languages. The work is shaped by a paradigm that treats the Bible as messianic, communal, human and divine, ancient, unified, wisdom, and meditation literature - designed to reveal its meaning over a lifetime of re-reading and reflection.
+[BibleProject](https://bibleproject.com) is a crowd-funded nonprofit that creates videos, podcasts, classes, and other tools to help people experience the unified story of the Bible that leads to Jesus. Every resource is available for free and most are localized into dozens of languages. The work is shaped by pillars that describe how the Bible is messianic, communal, collaberative, ancient, unified, wisdom, and meditation literature - designed to reveal its meaning over a lifetime of re-reading and reflection.
 
 ### Mission and Values
 
