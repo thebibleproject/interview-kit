@@ -148,21 +148,17 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
 ## Deliverables
 
-1. Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`.
-  - If you'd like to share a priviate repository with us, please ensure the following github users have access: Mont-E2805, lukeaskew, mjtognetti-bp
-2. Tests for the parts you think matter most.
-3. A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
-4. A clear and detailed `NOTES.md` that covers:
-  - a brief overview of what you changed to support the new requirements
-  - the lifecycle of a submission after your change
-  - a description of how your system handles a partner adding a new storage destination
-  - what you would change before running this in production at scale
-  - what you would do with more time
-    - how did you prioritize your time, and what do you think is the next right task for this project? 
-  - which AI tools you used, how you used them, and what you used them for
-    - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent. 
-  - any feedback you may have on the challenge - what was clear, what was missing, and what would make it better.
-    - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo. 
+  1. Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`. If you'd like to share a priviate repository with us, please ensure the following github users have access: Mont-E2805, lukeaskew, mjtognetti-bp
+  2. Tests for the parts you think matter most.
+  3. A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
+  4. A clear and detailed `NOTES.md` that covers:
+     1. a brief overview of what you changed to support the new requirements
+     2. the lifecycle of a submission after your change
+     3. a description of how your system handles a partner adding a new storage destination
+     4. what you would change before running this in production at scale
+     5. what you would do with more time - how did you prioritize your time, and what do you think is the next right task for this project?
+     6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
+     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo. 
 
 ## Further Questions to Consider
 
