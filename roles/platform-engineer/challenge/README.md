@@ -146,7 +146,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
 ## Deliverables
 
-  1. Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`. If you'd like to share a priviate repository with us, please ensure the following github users have access: Mont-E2805, lukeaskew, mjtognetti-bp
+  1. Your source code, with instructions for running it, as a git repository that includes your commit history.
   2. Tests for the parts you think matter most.
   3. A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
   4. A clear and detailed `NOTES.md` that covers:
@@ -156,7 +156,22 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
      4. what you would change before running this in production at scale
      5. what you would do with more time - how did you prioritize your time, and what do you think is the next right task for this project?
      6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
-     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo. 
+     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo.
+
+## Submitting
+    
+  1. Start your own repository from the challenge exactly as you received it:
+
+     ```sh
+     cp -r roles/platform-engineer/challenge <path>
+     cd <path>
+     git init && git add -A && git commit -m "Starting point"
+     ```
+
+  2. Commit your work on top of that first commit. Please keep it private, and don't fork this repo or open pull requests against it.
+  3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
+  4. Email the hiring manager to confirm your submission including the GitHub repo link and attaching the summary video to the email.
+  5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
 
 ## Further Questions to Consider
 
