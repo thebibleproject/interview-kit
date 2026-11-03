@@ -148,7 +148,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
   1. Your source code, with instructions for running it, as a git repository that includes your commit history.
   2. Tests for the parts you think matter most.
-  3. A 3-5 minute summary video explaining the most important aspects of how you thought about the work and what you chose to prioritize. 
+  3. A 3-5 minute casual video explaining the key aspects of how you thought about the work and what you chose to prioritize. We're looking for thoughtful but casual communication, not significant polish or scripting. Just take a few minutes to talk to us a little bit about your work as if you were describing it to another member of your team. Be thoughtful, but don't over-index on this specific deliverable.
   4. A clear and detailed `NOTES.md` that covers:
      1. a brief overview of what you changed to support the new requirements
      2. the lifecycle of a submission after your change
@@ -170,7 +170,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
   2. Commit your work on top of that first commit. Please keep it private, and don't fork this repo or open pull requests against it.
   3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
-  4. Email the hiring manager to confirm your submission including the GitHub repo link and attaching the summary video to the email.
+  4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
   5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
 
 ## Further Questions to Consider
