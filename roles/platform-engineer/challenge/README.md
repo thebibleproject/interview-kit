@@ -6,10 +6,10 @@ Extend an existing media processing service to support multiple partners and cha
 
 - [The Scenario](#the-scenario)
 - [The New Requirements](#the-new-requirements)
-  - [Submission State](#submission-state)
-  - [Expected Scale](#expected-scale)
+    - [Submission State](#submission-state)
+    - [Expected Scale](#expected-scale)
 - [Your Task](#your-task)
-  - [Must-Haves](#must-haves)
+    - [Must-Haves](#must-haves)
 - [What We're Looking For](#what-were-looking-for)
 - [Scope and Constraints](#scope-and-constraints)
 - [Getting Started](#getting-started)
@@ -62,15 +62,13 @@ Your organization wants to share its videos with more partners. Each new partner
     }
     ```
 
-   Bucket names are unique across the vendor, so a destination's name identifies one partner's bucket. Open a destination with `openStore`. See [`external/README.md`](external/README.md).
+    Bucket names are unique across the vendor, so a destination's name identifies one partner's bucket. Open a destination with `openStore`. See [`external/README.md`](external/README.md).
 
-3. **`primary` stays.** Every asset of every video still goes to `primary`, and `primary` is always required. It is not a destination of any partner.
+3. **The `primary` store is universal.** Every asset of every video still goes to `primary`, and `primary` is always required. It is not a destination of any partner.
 
-4. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay.
+4. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay. The content team's shared drive can't sustain bulk reads. A backfill must not read source files.
 
 5. **Existing data belongs to GoodPeople.** Every submission made before your change was for the partner `GoodPeople`. Its destinations are `cdn` (tier `medium`, required) and `archive` (tier `slow`, not required). A database written by the current service must keep working after your change.
-
-6. **Source files don't stay.** The content team's shared drive is running out of space. A cleanup job now deletes a source file sometime after the first submission that uses it succeeds, because `primary` then holds a copy. Assume the file at `path` exists only until that cleanup.
 
 ### Submission State
 
@@ -119,7 +117,7 @@ npm install          # installs dependencies
 npm test             # runs tests
 npm start            # starts the service
 npm run typecheck    # checks types
-npm run lint         # lints 
+npm run lint         # lints
 npm run format       # formats code
 ```
 
@@ -151,12 +149,12 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 - Your source code, with instructions for running it, as a git repository that includes your commit history. A zip of the project including its `.git` folder works, as does a private repository shared with us. Leave out `node_modules/` and `data/`.
 - Tests for the parts you think matter most.
 - A `NOTES.md` that covers:
-  - a brief overview of what you changed to support the new requirements
-  - the lifecycle of a submission after your change
-  - a description of how your system handles a partner adding a new storage destination
-  - what you would change before running this in production at scale
-  - what you would do with more time
-  - which AI tools you used, how you used them, and what you used them for
+    - a brief overview of what you changed to support the new requirements
+    - the lifecycle of a submission after your change
+    - a description of how your system handles a partner adding a new storage destination
+    - what you would change before running this in production at scale
+    - what you would do with more time
+    - which AI tools you used, how you used them, and what you used them for
 
 ## Further Questions to Consider
 
@@ -166,5 +164,5 @@ A real-world system has to hold up under many conditions. Keep these questions i
 - How does a backfill of 20,000 videos make progress, survive a restart, and stay out of the way of new submissions? How would an operator know how far along it is?
 - The content team submits the same file for two partners with different languages. Which work is shared between them, and which is not?
 - A partner removes a destination while uploads to it are in flight. What happens to those uploads?
-- The source file is gone. Which assets can the service still deliver, and from where? How would the content team send that video to a new partner?
+- A partner adds a destination while one of its videos is still processing. When can that video's assets reach the new destination, and from where?
 - How does the existing code have to change, and in what order would you ship those changes to a running service?
