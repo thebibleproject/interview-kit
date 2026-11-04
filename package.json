@@ -1,0 +1,16 @@
+{
+  "name": "interview-kit",
+  "private": true,
+  "scripts": {
+    "lint": "rumdl check .",
+    "lint:fix": "rumdl check --fix .",
+    "prepare": "lefthook install"
+  },
+  "allowScripts": {
+    "lefthook": true
+  },
+  "devDependencies": {
+    "lefthook": "^2.2.2",
+    "rumdl": "^0.3.2"
+  }
+}
