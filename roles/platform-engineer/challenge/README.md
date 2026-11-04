@@ -15,6 +15,7 @@ Extend an existing media processing service to support multiple partners and cha
 - [Getting Started](#getting-started)
 - [Test Video Files](#test-video-files)
 - [Deliverables](#deliverables)
+- [How to Submit Your Work](#how-to-submit-your-work)
 - [Further Questions to Consider](#further-questions-to-consider)
 
 ## The Scenario
@@ -162,17 +163,10 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
     6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo.
 
-## Submitting
+## How to Submit Your Work
 
-1. Start your own repository from the challenge exactly as you received it:
-
-    ```sh
-    cp -r roles/platform-engineer/challenge <path>
-    cd <path>
-    git init && git add -A && git commit -m "Starting point"
-    ```
-
-2. Commit your work on top of that first commit. Please keep it private, and don't fork this repo or open pull requests against it.
+1. Start your own private repository from the challenge repo template. 
+2. Commit your work on top of that first commit. Please keep it private and don't open pull requests against it.
 3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
 4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
 5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
