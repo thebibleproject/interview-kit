@@ -28,7 +28,7 @@ The files below are listed in the order a submission moves through the service.
 
 ## A Submission's Lifecycle
 
-1. `POST /videos` validates the request. The path must be absolute and name a regular file. The languages must be a non-empty list of codes such as `en` or `pt-BR`.
+1. `POST /videos` validates the request. The path must be relative to the videos directory (`VIDEOS_DIR`, default `data/videos/`), stay inside it, and name a regular file. The languages must be a non-empty list of codes such as `en` or `pt-BR`.
 2. One transaction finds or creates the video by path, size, and mtime. It records the submission and its languages. It then inserts the submission's plan. A task the video already has is skipped, so earlier work is reused.
 3. The worker polls the database every 250 ms and immediately after each task finishes, then starts runnable tasks of each type. A task is runnable when it is pending, its `next_run_at` has passed, and what it reads exists.
 4. Each task runs with a timeout. On success, its output and `state = 'done'` commit in one transaction. On failure, the retry policy either schedules another attempt or marks the task failed.
@@ -48,7 +48,7 @@ Objects land at `<videoId>/original.<ext>`, `<videoId>/capture-<n>.jpg`, and `<v
 
 | Table | Holds |
 | ----- | ----- |
-| `videos` | One row per file, unique on `(path, size_bytes, mtime_ms)`. `metadata` holds the getMetadata result as JSON once it has run. |
+| `videos` | One row per file, unique on `(path, size_bytes, mtime_ms)`. `path` is relative to the videos directory. `metadata` holds the getMetadata result as JSON once it has run. |
 | `submissions`, `submission_languages` | What each client asked for. Insert-only. |
 | `tasks` | One row per unit of work, unique on `(video_id, key)`. Holds `state`, `attempts`, `next_run_at`, `last_error`, and, for uploads, a `result` of `{ url, sizeBytes }`. |
 | `captures`, `transcripts` | Produced assets, so an upload retry never produces them again. |

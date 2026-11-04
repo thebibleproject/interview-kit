@@ -1,5 +1,5 @@
 import { stat } from "node:fs/promises";
-import { isAbsolute } from "node:path";
+import { isAbsolute, relative, resolve, sep } from "node:path";
 
 import express from "express";
 
@@ -14,12 +14,20 @@ import type { Language } from "../domain.ts";
 import type { Log } from "../log.ts";
 import type { Submission } from "./submit.ts";
 
-export function createApp({ db, log }: { db: DatabaseSync; log: Log }) {
+export function createApp({
+  db,
+  log,
+  videosDir,
+}: {
+  db: DatabaseSync;
+  log: Log;
+  videosDir: string;
+}) {
   const app = express();
   app.use(express.json());
 
   app.post("/videos", async (req, res) => {
-    const parsed = await parseSubmission(req.body);
+    const parsed = await parseSubmission(req.body, videosDir);
     if ("error" in parsed) {
       res.status(400).json(parsed);
       return;
@@ -74,23 +82,28 @@ export function createApp({ db, log }: { db: DatabaseSync; log: Log }) {
 
 async function parseSubmission(
   body: unknown,
+  videosDir: string,
 ): Promise<Submission | { error: string }> {
   if (typeof body !== "object" || body === null)
     return { error: "body must be a JSON object" };
   const { path, languages } = body as Record<string, unknown>;
-  if (typeof path !== "string" || !isAbsolute(path))
-    return { error: "path must be an absolute path" };
+  if (typeof path !== "string" || isAbsolute(path))
+    return { error: "path must be relative to the videos directory" };
+  const filePath = resolve(videosDir, path);
+  const inside = relative(videosDir, filePath);
+  if (!inside || inside === ".." || inside.startsWith(`..${sep}`))
+    return { error: "path must be inside the videos directory" };
   if (!Array.isArray(languages) || languages.length === 0) {
     return { error: "languages must be a non-empty array" };
   }
   const parsedLanguages = languages.map(parseLanguage);
   if (parsedLanguages.includes(null))
     return { error: 'each language must look like "en" or "pt-BR"' };
-  const info = await stat(path).catch(() => null);
+  const info = await stat(filePath).catch(() => null);
   if (info === null || !info.isFile())
-    return { error: `${path} is not a file` };
+    return { error: `${inside} is not a file` };
   return {
-    path,
+    path: inside,
     sizeBytes: info.size,
     mtimeMs: Math.trunc(info.mtimeMs),
     languages: [...new Set(parsedLanguages as Language[])],

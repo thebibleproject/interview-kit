@@ -32,6 +32,7 @@ export async function useTempDir(): Promise<string> {
 }
 
 /**
+ * Writes a video into `dir` and returns its path relative to `dir`, as a submission names it.
  * The external services treat about 1 MB as a 4-second video and anything under 1 KB as not a video.
  * The default is not a whole number of MB, like real files, so size-scaled timeouts come out fractional.
  */
@@ -43,10 +44,10 @@ export async function createVideo(
   const path = join(dir, name);
   await writeFile(path, "");
   await truncate(path, sizeBytes);
-  return path;
+  return name;
 }
 
-/** The HTTP app and a worker on a fresh database, against external services that are instant and never fail on their own. */
+/** The HTTP app and a worker on a fresh database, reading videos from `dir`, against external services that are instant and never fail on their own. */
 export async function startService(
   dir: string,
   { worker: workerOptions = {} }: { worker?: Partial<WorkerOptions> } = {},
@@ -66,13 +67,14 @@ export async function startService(
   const newWorker = () =>
     new Worker({
       db,
+      videosDir: dir,
       services: external,
       log,
       options: { ...TEST_OPTIONS, ...workerOptions },
     });
   let worker = newWorker();
 
-  const server = createApp({ db, log }).listen(0);
+  const server = createApp({ db, log, videosDir: dir }).listen(0);
   await once(server, "listening");
   const address = server.address();
   assert.ok(address !== null && typeof address === "object");

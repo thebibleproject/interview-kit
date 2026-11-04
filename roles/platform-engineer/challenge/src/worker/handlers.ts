@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+
 import { bytes, num, text } from "../db.ts";
 import { CAPTURE_COUNT, objectKey } from "../domain.ts";
 
@@ -71,32 +73,35 @@ export async function perform(
   action: TaskAction,
   {
     video,
+    videosDir,
     db,
     services,
     signal,
   }: {
     video: Video;
+    videosDir: string;
     db: DatabaseSync;
     services: Services;
     signal: AbortSignal;
   },
 ): Promise<Output> {
+  const filePath = resolve(videosDir, video.path);
   switch (action.type) {
     case "getMetadata":
       return {
         type: "getMetadata",
-        metadata: await services.media.getMetadata(video.path, { signal }),
+        metadata: await services.media.getMetadata(filePath, { signal }),
       };
     case "captureFrame": {
       const atSec =
         (metadataOf(video).durationSec * (action.index - 0.5)) / CAPTURE_COUNT;
-      const frame = await services.media.captureFrame(video.path, atSec, {
+      const frame = await services.media.captureFrame(filePath, atSec, {
         signal,
       });
       return { type: "captureFrame", index: action.index, frame };
     }
     case "transcribe": {
-      const transcript = await services.transcriber.transcribe(video.path, {
+      const transcript = await services.transcriber.transcribe(filePath, {
         language: action.language,
         signal,
       });
@@ -106,7 +111,7 @@ export async function perform(
       const stored = await services.stores[action.store].upload(
         {
           key: objectKey(video, action.asset),
-          source: uploadSource(db, video, action.asset),
+          source: uploadSource(db, video, filePath, action.asset),
         },
         { signal },
       );
@@ -181,11 +186,12 @@ function metadataOf(video: Video): Metadata {
 function uploadSource(
   db: DatabaseSync,
   video: Video,
+  filePath: string,
   asset: Asset,
 ): UploadSource {
   switch (asset.type) {
     case "original":
-      return { kind: "file", filePath: video.path };
+      return { kind: "file", filePath };
     case "capture": {
       const row = db
         .prepare("SELECT data FROM captures WHERE video_id = ? AND idx = ?")

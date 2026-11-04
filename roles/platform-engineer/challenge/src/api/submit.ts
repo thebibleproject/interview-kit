@@ -7,6 +7,7 @@ import type { Language, SubmissionId, VideoId } from "../domain.ts";
 
 /** A video is a file: the same path, size, and mtime is the same video. */
 export type Submission = {
+  /** Relative to the videos directory. */
   path: string;
   sizeBytes: number;
   mtimeMs: number;

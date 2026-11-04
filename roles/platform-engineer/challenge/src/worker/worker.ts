@@ -55,6 +55,7 @@ const SELECT_RUNNABLE = `
 /** Runs up to `CONCURRENCY` tasks of each type at once. Assumes it is the only worker on its database. */
 export class Worker {
   readonly #db: DatabaseSync;
+  readonly #videosDir: string;
   readonly #services: Services;
   readonly #log: Log;
   readonly #options: WorkerOptions;
@@ -64,16 +65,19 @@ export class Worker {
 
   constructor({
     db,
+    videosDir,
     services,
     log,
     options = {},
   }: {
     db: DatabaseSync;
+    videosDir: string;
     services: Services;
     log: Log;
     options?: Partial<WorkerOptions>;
   }) {
     this.#db = db;
+    this.#videosDir = videosDir;
     this.#services = services;
     this.#log = log;
     this.#options = { ...DEFAULT_OPTIONS, ...options };
@@ -155,6 +159,7 @@ export class Worker {
     try {
       const output = await perform(task.action, {
         video,
+        videosDir: this.#videosDir,
         db: this.#db,
         services: this.#services,
         signal,

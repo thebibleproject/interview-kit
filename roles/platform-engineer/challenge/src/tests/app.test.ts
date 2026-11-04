@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { test } from "node:test";
 
@@ -10,11 +11,17 @@ test("POST /videos rejects what it cannot process", async (t) => {
   const service = await startService(dir);
   t.after(() => service.close());
   const video = await createVideo(dir, "valid.mp4");
+  await mkdir(join(dir, "folder"));
 
   const invalid: [string, unknown][] = [
-    ["a relative path", { path: "valid.mp4", languages: ["en"] }],
-    ["a missing file", { path: join(dir, "missing.mp4"), languages: ["en"] }],
-    ["a directory", { path: dir, languages: ["en"] }],
+    ["an absolute path", { path: join(dir, video), languages: ["en"] }],
+    [
+      "a path outside the videos directory",
+      { path: `../${video}`, languages: ["en"] },
+    ],
+    ["the videos directory", { path: ".", languages: ["en"] }],
+    ["a missing file", { path: "missing.mp4", languages: ["en"] }],
+    ["a directory", { path: "folder", languages: ["en"] }],
     ["no languages", { path: video }],
     ["empty languages", { path: video, languages: [] }],
     ["an invalid language", { path: video, languages: ["en", "English"] }],
