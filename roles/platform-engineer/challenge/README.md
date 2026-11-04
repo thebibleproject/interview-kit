@@ -96,7 +96,7 @@ Start by reading the existing implementation and `DESIGN.md`. Adapt the service 
 3. When a partner adds a destination, the videos already sent to that partner are delivered there. If you stop the process partway through and start it again, delivery resumes without redoing finished work.
 4. A database written by the current service still works after your change.
 
-Work within about **4 hours**. If you do not finish, explain what works, what remains, and what you would tackle next in `NOTES.md`.
+Work within about **8 hours**. If you do not finish, explain what works, what remains, and what you would tackle next in `NOTES.md`.
 
 ## What We're Looking For
 
@@ -160,7 +160,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
     3. a description of how your system handles a partner adding a new storage destination
     4. what you would change before running this in production at scale
     5. what you would do with more time - how did you prioritize your time, and what do you think is the next right task for this project?
-    6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
+    6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtful engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo.
 
 ## How to Submit Your Work
