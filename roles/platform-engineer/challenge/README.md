@@ -66,11 +66,11 @@ Your organization wants to share its videos with more partners. Each new partner
 
     Bucket names are unique across the vendor, so a destination's name identifies one partner's bucket. Open a destination with `openStore`. See [`external/README.md`](external/README.md).
 
-3. **The `primary` store is universal.** Every asset of every video still goes to `primary`, and `primary` is always required. It is not a destination of any partner.
+3. **The `primary` store is universal.** Every asset of every video still goes to `primary`, and `primary` is always required. It is not a destination of any specific partner.
 
-4. **A video can be submitted again.** The content team may submit a video for another partner after an earlier submission succeeded. It may also resubmit a video for the same partner to add transcript languages, or by mistake. The service must not redo work it has already finished.
+4. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay. The content team's shared drive can't sustain bulk reads. A backfill must not read source files.
 
-5. **Destinations change over time.** When a partner adds a destination, every video already sent to that partner must be delivered there, not only new videos. A partner that moves to a new bucket expects its whole catalog there. When a partner removes a destination, the service stops delivering to it. Objects already delivered there can stay.
+5. **A video can be submitted again.** The content team may submit a video for another partner after an earlier submission succeeded. It may also resubmit a video for the same partner to add transcript languages, or by mistake. The service must not redo work it has already finished.
 
 6. **Existing data belongs to GoodPeople.** Every submission made before your change was for the partner `GoodPeople`. Its destinations are `cdn` (tier `medium`, required) and `archive` (tier `slow`, not required). A database written by the current service must keep working after your change.
 
@@ -150,32 +150,32 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
 ## Deliverables
 
-  1. Your source code, with instructions for running it, as a git repository that includes your commit history.
-  2. Tests for the parts you think matter most.
-  3. A 3-5 minute casual video explaining the key aspects of how you thought about the work and what you chose to prioritize. We're looking for thoughtful but casual communication, not significant polish or scripting. Just take a few minutes to talk to us a little bit about your work as if you were describing it to another member of your team. Be thoughtful, but don't over-index on this specific deliverable.
-  4. A clear and detailed `NOTES.md` that covers:
-     1. a brief overview of what you changed to support the new requirements
-     2. the lifecycle of a submission after your change
-     3. a description of how your system handles a partner adding a new storage destination
-     4. what you would change before running this in production at scale
-     5. what you would do with more time - how did you prioritize your time, and what do you think is the next right task for this project?
-     6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
-     7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo.
+1. Your source code, with instructions for running it, as a git repository that includes your commit history.
+2. Tests for the parts you think matter most.
+3. A 3-5 minute casual video explaining the key aspects of how you thought about the work and what you chose to prioritize. We're looking for thoughtful but casual communication, not significant polish or scripting. Just take a few minutes to talk to us a little bit about your work as if you were describing it to another member of your team. Be thoughtful, but don't over-index on this specific deliverable.
+4. A clear and detailed `NOTES.md` that covers:
+    1. a brief overview of what you changed to support the new requirements
+    2. the lifecycle of a submission after your change
+    3. a description of how your system handles a partner adding a new storage destination
+    4. what you would change before running this in production at scale
+    5. what you would do with more time - how did you prioritize your time, and what do you think is the next right task for this project?
+    6. which AI tools you used, how you used them, and what you used them for - we're looking for thoughtfuld engagement on the topic and awareness both of what you gain and what you lose when using AI tooling for development tasks. Additionally, we're looking to hire for human expertise, experience, and nuance - we're considering hiring you, not your agent.
+    7. any feedback you may have on the challenge - what was clear, what was missing, and what would make it better - We're interested in real thoughtful critique - to succeed in this role, you'll need to offer opinions and feedback clearly, generously, and thoughtfully. Take this as your first opportunity to do so. We're looking to build a team that makes us better, not one that accepts "good enough" or blindly agrees with the status quo.
 
 ## Submitting
-    
-  1. Start your own repository from the challenge exactly as you received it:
 
-     ```sh
-     cp -r roles/platform-engineer/challenge <path>
-     cd <path>
-     git init && git add -A && git commit -m "Starting point"
-     ```
+1. Start your own repository from the challenge exactly as you received it:
 
-  2. Commit your work on top of that first commit. Please keep it private, and don't fork this repo or open pull requests against it.
-  3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
-  4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
-  5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
+    ```sh
+    cp -r roles/platform-engineer/challenge <path>
+    cd <path>
+    git init && git add -A && git commit -m "Starting point"
+    ```
+
+2. Commit your work on top of that first commit. Please keep it private, and don't fork this repo or open pull requests against it.
+3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
+4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
+5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
 
 ## Further Questions to Consider
 
