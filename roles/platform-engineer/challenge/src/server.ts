@@ -19,11 +19,15 @@ const worker = new Worker({
   services: createExternal(),
   log: stdoutLog,
 });
-worker.start();
-
-const server = createApp({ db, log: stdoutLog, videosDir }).listen(port, () => {
-  stdoutLog("server.listening", { port, db: dbPath, videos: videosDir });
-});
+// Start the worker only after the server starts successfully, otherwise a second process might reset tasks.
+const server = createApp({ db, log: stdoutLog, videosDir }).listen(
+  port,
+  (err) => {
+    if (err) throw err;
+    worker.start();
+    stdoutLog("server.listening", { port, db: dbPath, videos: videosDir });
+  },
+);
 
 async function shutdown(signal: string) {
   stdoutLog("server.stopping", { signal });
