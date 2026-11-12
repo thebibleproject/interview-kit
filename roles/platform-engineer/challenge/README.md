@@ -51,7 +51,9 @@ Your organization wants to share its videos with more partners. Each new partner
     { "partner": "acme", "path": "lessons/intro.mp4", "languages": ["en", "es"] }
     ```
 
-2. **Each partner has its own destinations.** A destination is a bucket the partner owns at your storage vendor. It has a name, a tier, and a flag that says whether it is required. A partner replaces its whole list at once:
+    There is no endpoint for creating partners. If a submission names a partner the service has not seen before, the service creates that partner.
+
+2. **Each partner has its own destinations.** A destination is a bucket the partner owns at your storage vendor. It has a name, a tier, and a flag that says whether it is required. An internal team (the partnerships team) calls the API to replace a partner's entire destinations list at once:
 
     ```http
     PUT /partners/acme/destinations
@@ -165,7 +167,7 @@ Larger files take longer to transcribe and upload. Each store keeps a full copy 
 
 ## How to Submit Your Work
 
-1. Start your own private repository from the challenge repo template. 
+1. Start your own private repository from the challenge repo template.
 2. Commit your work on top of that first commit. Please keep it private and don't open pull requests against it.
 3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
 4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
