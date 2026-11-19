@@ -1,0 +1,15 @@
+# Starts the app from a clean state and waits for the Topics screen.
+#
+# The app keeps all data in memory, so every launch starts from the same
+# sample data. clearState is still set so tests stay isolated if the app
+# ever gains persistent storage.
+#
+# Ends on: Topics screen
+appId: com.biblestudynotebook
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "topics-screen"
+    timeout: 20000

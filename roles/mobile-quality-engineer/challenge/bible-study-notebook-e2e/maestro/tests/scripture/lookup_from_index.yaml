@@ -1,0 +1,40 @@
+appId: com.biblestudynotebook
+name: Look up a passage from the Scripture index
+tags:
+  - smoke
+  - scripture
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/open_scripture_tab.yaml
+
+# Expand Romans and open Hope's Romans 8:28-39
+- tapOn:
+    id: "book-row-ROM"
+- tapOn:
+    id: "book-reference-ref-12"
+
+- assertVisible:
+    id: "lookup-title"
+    text: 'Romans 8:28-39'
+- assertVisible:
+    id: "lookup-summary"
+    text: "Cited in 2 topics"
+
+# Hope cites exactly this passage. Prayer's Romans 8:26-28 shares verse 28.
+- assertVisible:
+    id: "lookup-match-ref-12"
+- assertVisible: "Exact match"
+- assertVisible:
+    id: "lookup-match-ref-15"
+- assertVisible: "Overlaps at 8:28"
+
+# A match opens its topic, and Back returns to the lookup
+- tapOn:
+    id: "lookup-match-ref-15"
+- assertVisible:
+    id: "topic-detail-title"
+    text: "Prayer"
+- tapOn:
+    id: "topic-detail-back"
+- assertVisible:
+    id: "lookup-screen"

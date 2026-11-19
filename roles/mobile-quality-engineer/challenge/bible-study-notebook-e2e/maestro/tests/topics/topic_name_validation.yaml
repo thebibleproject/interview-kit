@@ -1,0 +1,57 @@
+appId: com.biblestudynotebook
+name: Topic names are validated before a topic can be created
+tags:
+  - topics
+  - validation
+---
+- runFlow: ../../subflows/launch_app.yaml
+- tapOn:
+    id: "new-topic-button"
+- assertVisible:
+    id: "topic-dialog"
+
+# Blank: no error message, but the button is disabled
+- assertVisible:
+    id: "topic-dialog-submit"
+    enabled: false
+- assertNotVisible:
+    id: "topic-dialog-error"
+
+# Duplicate name, ignoring case
+- tapOn:
+    id: "topic-dialog-input"
+- inputText: "prayer"
+- assertVisible:
+    id: "topic-dialog-error"
+- assertVisible: 'You already have a topic called .Prayer.\.'
+- assertVisible:
+    id: "topic-dialog-submit"
+    enabled: false
+
+# 41 characters is one over the limit
+- eraseText: 50
+- inputText: "Spiritual disciplines for everyday living"
+- assertVisible:
+    id: "topic-dialog-error"
+- assertVisible: 'Keep topic names to 40 characters or fewer\.'
+- assertVisible:
+    id: "topic-dialog-submit"
+    enabled: false
+
+# 40 characters is accepted
+- eraseText: 50
+- inputText: "Spiritual disciplines in everyday living"
+- assertNotVisible:
+    id: "topic-dialog-error"
+- assertVisible:
+    id: "topic-dialog-submit"
+    enabled: true
+
+# Cancelling creates nothing
+- tapOn:
+    id: "topic-dialog-cancel"
+- assertNotVisible:
+    id: "topic-dialog"
+- assertVisible:
+    id: "topics-summary"
+    text: "4 topics . 13 Scripture references"

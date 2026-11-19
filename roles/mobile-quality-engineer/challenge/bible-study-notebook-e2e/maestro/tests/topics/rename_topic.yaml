@@ -1,0 +1,33 @@
+appId: com.biblestudynotebook
+name: Rename a topic
+tags:
+  - topics
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: Grace
+
+- tapOn:
+    id: "topic-detail-rename"
+- assertVisible:
+    id: "topic-dialog-title"
+    text: "Rename topic"
+- tapOn:
+    id: "topic-dialog-input"
+- eraseText: 50
+- inputText: "Amazing Grace"
+- tapOn:
+    id: "topic-dialog-submit"
+
+# The new name shows on the detail screen and in the list
+- assertVisible:
+    id: "topic-detail-title"
+    text: "Amazing Grace"
+- tapOn:
+    id: "topic-detail-back"
+- assertVisible:
+    id: "topic-row-topic-2"
+- assertVisible: "Amazing Grace"
+- assertNotVisible: "Grace"

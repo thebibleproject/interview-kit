@@ -1,0 +1,30 @@
+appId: com.biblestudynotebook
+name: Create a topic
+tags:
+  - smoke
+  - topics
+---
+- runFlow: ../../subflows/launch_app.yaml
+
+# Use a different study theme each run, so we are not always testing one name
+- evalScript: ${output.topicName = ['Faith', 'Love', 'Peace', 'Joy', 'Hope', 'Mercy', 'Wisdom', 'Patience'][Math.floor(Math.random() * 8)]}
+
+- runFlow:
+    file: ../../subflows/create_topic.yaml
+    env:
+      TOPIC_NAME: ${output.topicName}
+
+- assertVisible:
+    id: "topics-summary"
+    text: "5 topics . 13 Scripture references"
+
+# A new topic starts with no references
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: ${output.topicName}
+- assertVisible:
+    id: "topic-references-heading"
+    text: 'Scripture references \(0\)'
+- assertVisible:
+    id: "topic-references-empty"

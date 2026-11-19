@@ -1,0 +1,12 @@
+# Maestro workspace configuration.
+# Loaded automatically when you run `maestro test maestro/`.
+
+# Every flow under tests/, at any depth. Subflows live in subflows/ so they
+# are never run on their own.
+flows:
+  - "tests/**"
+
+# Flows tagged `wip` are skipped in normal runs. Run one directly by path
+# while you work on it.
+excludeTags:
+  - wip

@@ -1,0 +1,32 @@
+# Adds a Scripture reference, with a note, to the topic currently open.
+#
+# Env:
+#   REFERENCE  Reference as a user would type it, e.g. "Rom 8:31" (plain ASCII)
+#   NOTE       Note for the reference (plain ASCII)
+#
+# Starts on: Topic detail screen
+# Ends on:   Topic detail screen, after saving
+appId: com.biblestudynotebook
+---
+- tapOn:
+    id: "add-reference-button"
+- assertVisible:
+    id: "reference-editor-screen"
+- tapOn:
+    id: "reference-input"
+- inputText: ${REFERENCE}
+# Fail here, with a clear message, if the reference did not parse.
+- assertVisible:
+    id: "reference-parsed"
+- tapOn:
+    id: "reference-note-input"
+- inputText: ${NOTE}
+# Close the keyboard, if one is showing, by tapping plain text on the screen.
+# hideKeyboard would press Back on Android when no keyboard is up, which
+# closes the editor.
+- tapOn:
+    id: "reference-note-count"
+- tapOn:
+    id: "reference-save"
+- assertVisible:
+    id: "topic-detail-screen"

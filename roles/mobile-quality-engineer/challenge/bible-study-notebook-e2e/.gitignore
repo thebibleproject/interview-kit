@@ -1,0 +1,3 @@
+# Build artifacts and run output
+app/*.apk
+reports/

@@ -1,0 +1,43 @@
+appId: com.biblestudynotebook
+name: Deleting a topic removes it and its references everywhere
+tags:
+  - topics
+  - scripture
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: Prayer
+
+- tapOn:
+    id: "topic-detail-delete"
+# Native Android alert: no test IDs, so match on text.
+- assertVisible: 'Delete .Prayer.\?'
+- tapOn: '(?i)delete'
+
+# Gone from the Topics list
+- assertVisible:
+    id: "topics-screen"
+- assertNotVisible:
+    id: "topic-row-topic-4"
+- assertVisible:
+    id: "topics-summary"
+    text: "3 topics . 9 Scripture references"
+
+# Gone from the Scripture index. Prayer was the only topic citing
+# Philippians and 1 Thessalonians, so those books disappear entirely.
+- runFlow: ../../subflows/open_scripture_tab.yaml
+- assertVisible: "6 books"
+- assertNotVisible:
+    id: "book-row-PHP"
+- assertNotVisible:
+    id: "book-row-1TH"
+
+# Romans keeps Hope's and Grace's references but loses Prayer's
+- tapOn:
+    id: "book-row-ROM"
+- assertVisible:
+    id: "book-reference-ref-12"
+- assertNotVisible:
+    id: "book-reference-ref-15"
