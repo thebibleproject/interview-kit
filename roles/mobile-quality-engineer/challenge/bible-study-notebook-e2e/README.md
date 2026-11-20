@@ -65,6 +65,6 @@ scripts/
 
 1. Start your own private repository from the challenge repo template.
 2. Commit your work on top of that first commit. Please keep it private and don't open pull requests against it.
-3. Once completed, share a private GitHub repository with @Mont-E2805, @lukeaskew, @mjtognetti-bp.
+3. Once completed, share a private GitHub repository with `@jeffikus`, `@tiffanywilson`.
 4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
 5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
