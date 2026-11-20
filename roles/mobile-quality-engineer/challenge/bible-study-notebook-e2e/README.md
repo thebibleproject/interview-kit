@@ -6,13 +6,7 @@ End-to-end tests for the Bible Study Notebook Android app, written with [Maestro
 
 - **Java 17 or newer.** Check with `java -version`.
 - **An Android emulator,** from Android Studio's Device Manager, with `adb` on your PATH. Check with `adb devices`.
-- **Maestro CLI:**
-
-  ```sh
-  curl -Ls "https://get.maestro.mobile.dev" | bash
-  ```
-
-  Then open a new terminal and check with `maestro --version`. See the [Maestro installation docs](https://docs.maestro.dev) for other options.
+- **[Maestro CLI](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)**
 
 - **Maestro Studio** (optional, but useful for finding elements). This is a desktop app; download the installer from [maestro.dev](https://maestro.dev/).
 
