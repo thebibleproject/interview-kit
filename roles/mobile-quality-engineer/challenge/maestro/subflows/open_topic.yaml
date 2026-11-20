@@ -1,0 +1,16 @@
+# Opens a topic from the Topics list by its name.
+#
+# Env:
+#   TOPIC_NAME  Exact name of the topic, e.g. "Prayer"
+#
+# Starts on: Topics screen
+# Ends on:   Topic detail screen for that topic
+appId: com.biblestudynotebook
+---
+- tapOn:
+    text: ${TOPIC_NAME}
+- assertVisible:
+    id: "topic-detail-title"
+    text: ${TOPIC_NAME}
+# The screen slides in. Let it finish so the next tap lands where intended.
+- waitForAnimationToEnd

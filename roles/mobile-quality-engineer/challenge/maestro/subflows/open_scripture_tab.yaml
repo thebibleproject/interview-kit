@@ -1,0 +1,10 @@
+# Switches to the Scripture tab.
+#
+# Starts on: any screen that shows the tab bar
+# Ends on:   Scripture index screen
+appId: com.biblestudynotebook
+---
+- tapOn:
+    id: "tab-scripture"
+- assertVisible:
+    id: "scripture-screen"

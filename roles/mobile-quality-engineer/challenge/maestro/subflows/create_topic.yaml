@@ -1,0 +1,24 @@
+# Creates a topic through the New topic dialog.
+#
+# Env:
+#   TOPIC_NAME  Name for the new topic (plain ASCII)
+#
+# Starts on: Topics screen
+# Ends on:   Topics screen, with the new topic in the list
+appId: com.biblestudynotebook
+---
+- tapOn:
+    id: "new-topic-button"
+- assertVisible:
+    id: "topic-dialog"
+- tapOn:
+    id: "topic-dialog-input"
+- inputText: ${TOPIC_NAME}
+# No hideKeyboard: on Android it presses Back, which closes this dialog when
+# no on-screen keyboard is showing. The dialog moves above the keyboard anyway.
+- tapOn:
+    id: "topic-dialog-submit"
+- assertNotVisible:
+    id: "topic-dialog"
+- assertVisible:
+    text: ${TOPIC_NAME}

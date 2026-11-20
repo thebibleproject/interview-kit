@@ -1,0 +1,31 @@
+appId: com.biblestudynotebook
+name: App launches with sample data and both tabs work
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/launch_app.yaml
+
+# Sample data is loaded
+- assertVisible:
+    id: "topics-summary"
+    text: "4 topics . 13 Scripture references"
+- assertVisible:
+    id: "topic-row-topic-1"
+- assertVisible:
+    id: "topic-row-topic-2"
+- assertVisible:
+    id: "topic-row-topic-3"
+- assertVisible:
+    id: "topic-row-topic-4"
+
+# Scripture tab
+- runFlow: ../../subflows/open_scripture_tab.yaml
+- assertVisible:
+    id: "scripture-books-heading"
+- assertVisible: "8 books"
+
+# Back to Topics
+- tapOn:
+    id: "tab-topics"
+- assertVisible:
+    id: "topics-screen"

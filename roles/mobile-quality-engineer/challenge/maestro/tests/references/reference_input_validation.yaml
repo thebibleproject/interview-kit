@@ -1,0 +1,49 @@
+appId: com.biblestudynotebook
+name: Invalid references are explained and cannot be saved
+tags:
+  - references
+  - validation
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: Prayer
+- tapOn:
+    id: "add-reference-button"
+- assertVisible:
+    id: "reference-editor-screen"
+- tapOn:
+    id: "reference-input"
+
+# A chapter that does not exist
+- inputText: "John 22:1"
+- assertVisible:
+    id: "reference-error"
+- assertVisible: 'John has 21 chapters\. Check the chapter number\.'
+- assertVisible:
+    id: "reference-save"
+    enabled: false
+
+# A book name that could be several books
+- eraseText: 50
+- inputText: "jo 3:16"
+- assertVisible: '.jo. could be Joshua, Job, Joel, Jonah or John\. Type more of the name\.'
+- assertVisible:
+    id: "reference-save"
+    enabled: false
+
+# A passage the topic already has, typed differently
+- eraseText: 50
+- inputText: "Rom 8:26-28"
+- assertVisible: 'Prayer already includes Romans 8:26.28\.'
+- assertVisible:
+    id: "reference-save"
+    enabled: false
+
+# Closing discards the draft
+- tapOn:
+    id: "reference-editor-close"
+- assertVisible:
+    id: "topic-references-heading"
+    text: 'Scripture references \(4\)'

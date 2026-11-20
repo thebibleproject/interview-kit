@@ -1,0 +1,57 @@
+appId: com.biblestudynotebook
+name: Add a reference to a topic
+tags:
+  - smoke
+  - references
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: Prayer
+- assertVisible:
+    id: "topic-references-heading"
+    text: 'Scripture references \(4\)'
+
+- tapOn:
+    id: "add-reference-button"
+- assertVisible:
+    id: "reference-editor-title"
+    text: "Add reference"
+
+# Save stays disabled until the reference is valid
+- assertVisible:
+    id: "reference-save-button"
+    enabled: false
+
+# An abbreviated numbered book is recognized and normalized
+- tapOn:
+    id: "reference-input"
+- inputText: "1 jn 1:9"
+- assertVisible:
+    id: "reference-parsed"
+- assertVisible: '1 John 1:9 . 1 verse'
+
+# Forgiveness already cites this verse, and the editor says so
+- assertVisible:
+    id: "reference-cross-hint"
+- assertVisible: 'Also cited in Forgiveness as 1 John 1:9\.'
+
+- tapOn:
+    id: "reference-note-input"
+- inputText: "Confession as part of prayer."
+- assertVisible:
+    id: "reference-note-count"
+    text: "29 / 500"
+# Close the keyboard, if one is showing, by tapping plain text on the screen
+- tapOn:
+    id: "reference-note-count"
+- tapOn:
+    id: "reference-save-button"
+
+# Back on the topic with the new reference listed
+- assertVisible:
+    id: "topic-references-heading"
+    text: 'Scripture references \(5\)'
+- assertVisible: "1 John 1:9"
+- assertVisible: "Confession as part of prayer."

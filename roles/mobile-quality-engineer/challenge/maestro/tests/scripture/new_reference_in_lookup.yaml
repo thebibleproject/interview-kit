@@ -1,0 +1,41 @@
+appId: com.biblestudynotebook
+name: A newly added reference shows up in a Scripture search
+tags:
+  - scripture
+  - references
+---
+- runFlow: ../../subflows/launch_app.yaml
+
+# Grace gets Romans 8:31, a verse inside Hope's Romans 8:28-39
+- runFlow:
+    file: ../../subflows/open_topic.yaml
+    env:
+      TOPIC_NAME: Grace
+- runFlow:
+    file: ../../subflows/add_reference.yaml
+    env:
+      REFERENCE: "Rom 8:31"
+      NOTE: "Nothing can stand against those God is for."
+
+# Search for the verse
+- runFlow: ../../subflows/open_scripture_tab.yaml
+- tapOn:
+    id: "scripture-search-input"
+- inputText: "rom 8:31"
+- assertVisible:
+    id: "scripture-search-result"
+- assertVisible: "Cited in 2 topics"
+- tapOn:
+    id: "scripture-search-result"
+
+# Grace matches exactly; Hope's longer passage overlaps at verse 31
+- assertVisible:
+    id: "lookup-title"
+    text: "Romans 8:31"
+- assertVisible:
+    id: "lookup-summary"
+    text: "Cited in 2 topics"
+- assertVisible: "Exact match"
+- assertVisible: "Overlaps at 8:31"
+- assertVisible:
+    id: "lookup-match-ref-12"
