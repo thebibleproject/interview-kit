@@ -8,7 +8,12 @@ End-to-end tests for the Bible Study Notebook Android app, written with [Maestro
 - **An Android emulator,** from Android Studio's Device Manager, with `adb` on your PATH. Check with `adb devices`.
 - **[Maestro CLI](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)**
 
-- **[Maestro Studio](https://docs.maestro.dev/maestro-studio)** (optional, but useful for finding elements).
+  ```sh
+  curl -Ls "https://get.maestro.mobile.dev" | bash
+  ```
+
+  Then open a new terminal and check with `maestro --version`. See the [Maestro installation docs](https://docs.maestro.dev) for other options.
+- **Maestro Studio** (optional, but useful for finding elements). This is a desktop app; download the installer from [maestro.dev](https://maestro.dev/).
 
 ## Setup
 
@@ -40,10 +45,9 @@ You can also call Maestro directly, for example `maestro test maestro/tests/topi
 
 To find an element's ID or text, or to try steps interactively, use **Maestro Studio**, a desktop app. Download the installer from [maestro.dev](https://maestro.dev/). With the emulator running, Studio shows the emulator's screen and the details of the element under your cursor.
 
-
 ## Project structure
 
-```
+```text
 app/                  Put the APK here (not committed)
 maestro/
   config.yaml         Which flows run
@@ -59,6 +63,6 @@ scripts/
 
 1. Start your own private repository from the challenge repo template.
 2. Commit your work on top of that first commit. Please keep it private and don't open pull requests against it.
-3. Once completed, share a private GitHub repository with `@jeffikus`, `@tiffanywilson`.
+3. Once completed, share a private GitHub repository with `@tiffanywilson`, `@lucasstorti`, and `@jeffikus`.
 4. Email the hiring manager to confirm your submission, including the GitHub repo link and the summary video.
 5. We'll reply with a confirmation we've received your submission within a week and give you an anticipated timeline for review.
