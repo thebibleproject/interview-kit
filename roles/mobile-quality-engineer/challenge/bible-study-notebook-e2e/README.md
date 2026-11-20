@@ -8,7 +8,7 @@ End-to-end tests for the Bible Study Notebook Android app, written with [Maestro
 - **An Android emulator,** from Android Studio's Device Manager, with `adb` on your PATH. Check with `adb devices`.
 - **[Maestro CLI](https://docs.maestro.dev/maestro-cli/how-to-install-maestro-cli)**
 
-- **Maestro Studio** (optional, but useful for finding elements). This is a desktop app; download the installer from [maestro.dev](https://maestro.dev/).
+- **[Maestro Studio](https://docs.maestro.dev/maestro-studio)** (optional, but useful for finding elements).
 
 ## Setup
 
